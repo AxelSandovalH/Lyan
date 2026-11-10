@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LYAN — Adventure Filmmaker · Los Cabos</title>
+  <meta name="description" content="Christopher Lyan. Adventure filmmaker, fotógrafo y piloto de dron profesional en Los Cabos, México. Films, fotografía y video aéreo para bodas, marcas, bienes raíces y eventos." />
+  <meta property="og:title" content="LYAN — Adventure Filmmaker" />
+  <meta property="og:description" content="Cinematic travel stories around the world. No Risk. No Story." />
+  <meta property="og:image" content="https://i.ytimg.com/vi/AhDZVlISxeo/maxresdefault.jpg" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="nav" id="top">
+  <a href="#top" class="brand" aria-label="LYAN">
+    <img src="assets/logo.svg" alt="" width="40" height="40" />
+    <span>LYAN</span>
+  </a>
+  <nav class="nav-links">
+    <a href="#films" data-i18n="nav.films">Films</a>
+    <a href="#services" data-i18n="nav.services">Servicios</a>
+    <a href="#about" data-i18n="nav.about">Sobre mí</a>
+    <a href="#contact" data-i18n="nav.contact">Contacto</a>
+  </nav>
+  <button class="lang" id="langToggle" aria-label="Cambiar idioma"><span data-lang="es">EN</span><span data-lang="en">ES</span></button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-poster" aria-hidden="true"></div>
+  <div class="hero-video" aria-hidden="true">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/w3Bb3DCHkKE?autoplay=1&mute=1&controls=0&loop=1&playlist=w3Bb3DCHkKE&playsinline=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&disablekb=1"
+      title="Showreel" frameborder="0" allow="autoplay; encrypted-media" tabindex="-1"></iframe>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="eyebrow" data-i18n="hero.eyebrow">Los Cabos, México → Worldwide</p>
+    <h1>LYAN</h1>
+    <p class="hero-sub" data-i18n="hero.sub">Adventure Filmmaker · Fotógrafo · Piloto de dron profesional</p>
+    <p class="motto">No Risk. No Story.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#films" data-i18n="hero.cta1">Ver films</a>
+      <a class="btn btn-ghost" href="#contact" data-i18n="hero.cta2">Reservar</a>
+    </div>
+  </div>
+  <a href="#films" class="scroll-hint" aria-hidden="true"><span></span></a>
+</section>
+
+<!-- FEATURED -->
+<section class="featured">
+  <div class="container featured-grid">
+    <div class="featured-copy">
+      <p class="eyebrow" data-i18n="featured.eyebrow">Film destacado</p>
+      <h2 data-i18n="featured.title">Bisbee's 2025: el torneo de pesca más caro del mundo</h2>
+      <p data-i18n="featured.body">Tres días en el agua filmando el Black &amp; Blue de Los Cabos, con una bolsa de 7.5 millones de dólares. Yates, marlines y la adrenalina de la pesca deportiva desde el aire y desde cubierta.</p>
+      <button class="btn btn-primary" data-video="AhDZVlISxeo" data-i18n="featured.cta">Reproducir</button>
+    </div>
+    <button class="featured-thumb" data-video="AhDZVlISxeo" aria-label="Reproducir Bisbee's 2025">
+      <img src="https://i.ytimg.com/vi/AhDZVlISxeo/maxresdefault.jpg" alt="Bisbee's 2025" loading="lazy" />
+      <span class="play"></span>
+    </button>
+  </div>
+</section>
+
+<!-- FILMS -->
+<section class="films" id="films">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow" data-i18n="films.eyebrow">Portafolio</p>
+      <h2 data-i18n="films.title">Films</h2>
+      <p class="section-lead" data-i18n="films.lead">Historias de viaje, mar y aventura. Filmadas con dron, cámara en mano y bajo el agua.</p>
+    </div>
+    <div class="film-grid" id="filmGrid"></div>
+    <div class="center">
+      <a class="btn btn-ghost" href="https://www.youtube.com/@ChristopherLyan" target="_blank" rel="noopener" data-i18n="films.more">Ver todo en YouTube</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Lyan Visuals</p>
+      <h2 data-i18n="services.title">Servicios</h2>
+      <p class="section-lead" data-i18n="services.lead">Producción audiovisual completa en Los Cabos y donde haga falta. Cámaras profesionales, dron y 360°.</p>
+    </div>
+    <div class="service-grid">
+      <article class="service"><span class="num">01</span><h3 data-i18n="s1.t">Bodas</h3><p data-i18n="s1.b">Film cinematográfico y fotografía del día completo, con tomas aéreas de la ceremonia y la locación.</p></article>
+      <article class="service"><span class="num">02</span><h3 data-i18n="s2.t">Marcas</h3><p data-i18n="s2.b">Contenido para redes, campañas y lanzamientos. Reels, spots y fotografía de producto en locación.</p></article>
+      <article class="service"><span class="num">03</span><h3 data-i18n="s3.t">Bienes raíces</h3><p data-i18n="s3.b">Recorridos en video, fotografía de interiores y vistas aéreas que venden la propiedad y su entorno.</p></article>
+      <article class="service"><span class="num">04</span><h3 data-i18n="s4.t">Eventos y deportes</h3><p data-i18n="s4.b">Torneos de pesca, competencias y eventos corporativos. Cobertura en tiempo real y resumen editado.</p></article>
+      <article class="service"><span class="num">05</span><h3 data-i18n="s5.t">Aéreo / Dron</h3><p data-i18n="s5.b">Piloto profesional certificado. Tomas cinematográficas, FPV y seguimiento en mar abierto.</p></article>
+      <article class="service"><span class="num">06</span><h3 data-i18n="s6.t">360° y submarino</h3><p data-i18n="s6.b">Experiencias inmersivas y video bajo el agua para destinos, hoteles y turismo de aventura.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-media">
+      <img src="https://i.ytimg.com/vi/IT7qEkj4PjY/maxresdefault.jpg" alt="" loading="lazy" />
+      <img src="https://i.ytimg.com/vi/S5hUpPsPWUg/maxresdefault.jpg" alt="" loading="lazy" class="offset" />
+    </div>
+    <div class="about-copy">
+      <p class="eyebrow" data-i18n="about.eyebrow">Sobre mí</p>
+      <h2 data-i18n="about.title">Christopher Lyan</h2>
+      <p data-i18n="about.p1">Soy filmmaker y fotógrafo de aventura con base en Los Cabos, Baja California Sur. Desde 2017 cuento historias de viaje en video: el mar, las montañas, la pesca deportiva y la gente que vive de ellas.</p>
+      <p data-i18n="about.p2">Piloto de dron profesional. He filmado desde los acantilados de Banff hasta el fondo del mar de Cortés, y cada año cierro con un film de agradecimiento a quienes hicieron posible la aventura.</p>
+      <ul class="stats">
+        <li><strong>2017</strong><span data-i18n="st1">filmando desde</span></li>
+        <li><strong>Bisbee's</strong><span data-i18n="st2">cobertura 2024 · 25 · 26</span></li>
+        <li><strong>MX · CA · 🌎</strong><span data-i18n="st3">locaciones</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <p class="eyebrow" data-i18n="contact.eyebrow">Bookings &amp; colaboraciones</p>
+    <h2 data-i18n="contact.title">Hagamos la siguiente historia.</h2>
+    <p class="section-lead" data-i18n="contact.lead">Cuéntame qué quieres filmar, dónde y cuándo. Respondo en menos de 24 horas.</p>
+    <a class="btn btn-primary btn-lg" href="mailto:lyanpro1500@gmail.com">lyanpro1500@gmail.com</a>
+    <div class="socials">
+      <a href="https://www.instagram.com/christopherlyan/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.instagram.com/lyan.visuals/" target="_blank" rel="noopener">Lyan Visuals</a>
+      <a href="https://www.youtube.com/@ChristopherLyan" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <span>© <span id="year"></span> Christopher Lyan · Los Cabos, México</span>
+    <span class="motto-sm">No Risk. No Story.</span>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">×</button>
+  <div class="lightbox-frame"><iframe id="lightboxIframe" src="" title="Video" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe></div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
