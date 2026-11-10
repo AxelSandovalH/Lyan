@@ -180,6 +180,22 @@ document.querySelectorAll(".section-head, .service, .featured-copy, .featured-th
 document.getElementById("year").textContent = new Date().getFullYear();
 applyLang(lang);
 
+/* ===== Hero móvil: montaje mp4 nativo (YouTube no reproduce solo en iOS) ===== */
+(() => {
+  const v = document.getElementById("heroMobile");
+  if (!v) return;
+  const mobile = matchMedia("(max-width: 760px), (hover: none)").matches;
+  if (!mobile) { v.remove(); return; }
+  document.getElementById("heroIframe")?.remove();   // en móvil no cargamos YouTube
+  v.src = v.dataset.src;
+  v.addEventListener("playing", () => v.classList.add("playing"), { once: true });
+  const tryPlay = () => v.play().catch(() => {});
+  tryPlay();
+  document.addEventListener("touchstart", tryPlay, { once: true, passive: true });
+  const hero = document.querySelector(".hero");
+  new IntersectionObserver(([e]) => { if (e.isIntersecting) tryPlay(); else v.pause(); }, { threshold: 0.05 }).observe(hero);
+})();
+
 /* ===== Hero video: reveal only once YouTube is playing; loop via API (no playlist UI) ===== */
 (() => {
   const wrap = document.querySelector(".hero-video");
