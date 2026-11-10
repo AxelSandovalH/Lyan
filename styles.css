@@ -127,7 +127,12 @@ html[lang="es"] [data-lang="es"],html[lang="en"] [data-lang="en"]{display:inline
 
 /* footer */
 .footer{padding:32px 0;border-top:1px solid rgba(243,239,230,.08);font-size:13px;color:var(--ink-3)}
-.footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer .container{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.footer-social{display:flex;gap:22px;flex-wrap:wrap}
+.footer-social a{display:inline-flex;align-items:center;gap:8px;color:var(--ink-2);font-size:12px;letter-spacing:.12em;text-transform:uppercase;transition:.2s}
+.footer-social svg{width:20px;height:20px}
+.footer-social a:hover{color:var(--gold)}
+@media(max-width:760px){.footer .container{flex-direction:column;align-items:flex-start}}
 .motto-sm{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--ink-2)}
 
 /* lightbox */
