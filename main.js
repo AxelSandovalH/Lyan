@@ -78,13 +78,19 @@ function applyLang(l) {
 }
 document.getElementById("langToggle").addEventListener("click", () => applyLang(lang === "es" ? "en" : "es"));
 
+/* Pantallas chicas o conexión lenta -> variante 720p (-sm) */
+const SMALL = matchMedia("(max-width: 760px)").matches || (navigator.connection && (navigator.connection.saveData || /2g|3g/.test(navigator.connection.effectiveType || "")));
+const pickSrc = v => (SMALL && v.dataset.srcSm) ? v.dataset.srcSm : v.dataset.src;
+const contactVideo = document.querySelector(".contact-video");
+if (contactVideo) { contactVideo.src = pickSrc(contactVideo); contactVideo.load(); contactVideo.play().catch(() => {}); }
+
 /* ===== Selected works ===== */
 const worksList = document.getElementById("worksList");
 function renderWorks() {
   worksList.innerHTML = WORKS.map((w, i) => `
     <article class="work" style="z-index:${i + 1}">
       <div class="work-media">
-        ${w.video ? `<video muted loop playsinline preload="none" poster="${w.poster}" data-src="${w.video}"></video>` : `<img src="${w.poster}" alt="" loading="lazy" />`}
+        ${w.video ? `<video muted loop playsinline preload="none" poster="${w.poster}" data-src="${w.video}" data-src-sm="${w.video.replace(/\.mp4$/, "-sm.mp4")}"></video>` : `<img src="${w.poster}" alt="" loading="lazy" />`}
       </div>
       <div class="work-overlay"></div>
       <div class="work-copy container">
@@ -97,7 +103,7 @@ function renderWorks() {
   if (!vids.length) return;
   const vio = new IntersectionObserver(es => es.forEach(e => {
     const v = e.target;
-    if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause();
+    if (e.isIntersecting) { if (!v.src) v.src = pickSrc(v); v.play().catch(() => {}); } else v.pause();
   }), { threshold: 0.25 });
   vids.forEach(v => vio.observe(v));
 }
