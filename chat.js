@@ -107,6 +107,10 @@
   document.addEventListener("keydown", e => { if (e.key === "Escape" && open) { open = false; render(); } });
   document.getElementById("langToggle")?.addEventListener("click", () => setTimeout(() => { if (msgs.length === 1) msgs = [{ role: "assistant", content: c("hello") }]; render(); }, 0));
 
+  /* en móvil, oculto mientras el hero está a la vista (no tapa los botones) */
+  const heroEl = document.querySelector(".hero");
+  if (heroEl && matchMedia("(max-width: 760px)").matches) new IntersectionObserver(([en]) => root.classList.toggle("waf-hero", !open && en.intersectionRatio > 0.3), { threshold: [0, 0.3, 0.6] }).observe(heroEl);
+
   /* oculto con el pie a la vista */
   const f = document.querySelector("footer");
   if (f && "IntersectionObserver" in window) new IntersectionObserver(([en]) => root.classList.toggle("waf-hide", !open && en.isIntersecting), { threshold: .05 }).observe(f);
