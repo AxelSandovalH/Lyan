@@ -116,23 +116,37 @@ document.querySelectorAll(".section-head, .service, .featured-copy, .featured-th
 document.getElementById("year").textContent = new Date().getFullYear();
 applyLang(lang);
 
-/* ===== Hero video: reveal only once YouTube is actually playing (hides title/spinner/controls) ===== */
+/* ===== Hero video: reveal only once YouTube is playing; loop via API (no playlist UI) ===== */
 (() => {
   const wrap = document.querySelector(".hero-video");
   const frame = document.getElementById("heroIframe");
   if (!wrap || !frame) return;
-  let shown = false;
-  const show = () => { if (!shown) { shown = true; setTimeout(() => wrap.classList.add("playing"), 900); } };
+  const send = (func, args = []) => frame.contentWindow && frame.contentWindow.postMessage(JSON.stringify({ event: "command", func, args }), "*");
+  let shown = false, looping = false;
+  const reveal = () => wrap.classList.add("playing");
+  const show = () => { if (!shown) { shown = true; setTimeout(reveal, 3500); } };
+  const restart = () => {
+    if (looping) return;
+    looping = true;
+    wrap.classList.remove("playing");            // fade to poster (1.6s)
+    setTimeout(() => { send("seekTo", [6, true]); send("playVideo"); }, 1500);
+    setTimeout(() => { reveal(); looping = false; }, 4500); // fade back once the seek has settled
+  };
   addEventListener("message", e => {
     if (!/youtube(-nocookie)?\.com$/.test(new URL(e.origin).hostname)) return;
-    try {
-      const d = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
-      if (d && d.event === "infoDelivery" && d.info && d.info.playerState === 1) show();
-      if (d && d.event === "onStateChange" && d.info === 1) show();
-    } catch {}
+    let d; try { d = typeof e.data === "string" ? JSON.parse(e.data) : e.data; } catch { return; }
+    if (!d) return;
+    if (d.event === "onStateChange" && d.info === 1) show();
+    if (d.event === "infoDelivery" && d.info) {
+      const i = d.info;
+      if (i.playerState === 1) show();
+      if (i.duration && i.currentTime != null && i.duration - i.currentTime < 4) restart();
+      if (i.playerState === 0) restart();
+    }
   });
   frame.addEventListener("load", () => {
     frame.contentWindow.postMessage(JSON.stringify({ event: "listening", id: "hero" }), "*");
-    setTimeout(show, 6000); // fallback if the API never answers
+    send("mute"); send("playVideo");
+    setTimeout(show, 6000);
   });
 })();
