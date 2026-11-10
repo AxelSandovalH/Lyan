@@ -3,12 +3,14 @@
 const WORKS = [
   { id: "AhDZVlISxeo", video: "assets/video/bisbees.mp4", poster: "assets/video/bisbees-poster.jpg",
     es: { title: "Bisbee's Black & Blue", meta: "Los Cabos · 2025 · Documental corto" }, en: { title: "Bisbee's Black & Blue", meta: "Los Cabos · 2025 · Short documentary" } },
-  { id: "IT7qEkj4PjY", video: null, poster: "https://i.ytimg.com/vi/IT7qEkj4PjY/maxresdefault.jpg",
+  { id: "IT7qEkj4PjY", video: "assets/video/banff.mp4", poster: "assets/video/banff-poster.jpg",
     es: { title: "Banff", meta: "Canadá · Cinematic travel film" }, en: { title: "Banff", meta: "Canada · Cinematic travel film" } },
-  { id: "S5hUpPsPWUg", video: null, poster: "https://i.ytimg.com/vi/S5hUpPsPWUg/maxresdefault.jpg",
+  { id: "S5hUpPsPWUg", video: "assets/video/underwater.mp4", poster: "assets/video/underwater-poster.jpg",
     es: { title: "Bajo el agua", meta: "Mar de Cortés · Film submarino" }, en: { title: "Underwater", meta: "Sea of Cortez · Underwater film" } },
-  { id: "w3Bb3DCHkKE", video: null, poster: "https://i.ytimg.com/vi/w3Bb3DCHkKE/hqdefault.jpg",
-    es: { title: "Desde el aire", meta: "Baja California Sur · Showreel de dron" }, en: { title: "From above", meta: "Baja California Sur · Drone showreel" } },
+  { id: "hpSocNV74f0", video: "assets/video/aerial.mp4", poster: "assets/video/aerial-poster.jpg",
+    es: { title: "Desde el aire", meta: "Baja California Sur · DJI Air 2S" }, en: { title: "From above", meta: "Baja California Sur · DJI Air 2S" } },
+  { id: "CQkeevDR2xk", video: "assets/video/cdmx.mp4", poster: "assets/video/cdmx-poster.jpg",
+    es: { title: "Ciudad de México", meta: "Reforma · Vlog aéreo" }, en: { title: "Mexico City", meta: "Reforma · Aerial vlog" } },
 ];
 const MARQUEE = ["Los Cabos", "Banff", "La Paz", "Oaxaca", "Sayulita", "Ciudad de México", "Bisbee's Black & Blue", "DJI", "FPV", "360°", "Submarino", "Worldwide"];
 
@@ -16,10 +18,11 @@ const MARQUEE = ["Los Cabos", "Banff", "La Paz", "Oaxaca", "Sayulita", "Ciudad d
 const FILMS = [
   { id: "H2QswemESVg", es: "Gracias 2023", en: "Thank You 2023", tag: { es: "Recap anual", en: "Year recap" }, wide: true },
   { id: "Zyb8TYFKU4Y", es: "Un día de pesca en Cabo", en: "A Fishing Day in Cabo", tag: { es: "Pesca deportiva", en: "Sport fishing" } },
-  { id: "hpSocNV74f0", es: "Gracias 2022", en: "Thank You 2022", tag: { es: "DJI Air 2S", en: "DJI Air 2S" } },
+  { id: "w3Bb3DCHkKE", es: "My Best Drone Moments", en: "My Best Drone Moments", tag: { es: "Showreel aéreo", en: "Aerial showreel" } },
   { id: "dDno7UmIGms", es: "México", en: "Mexico", tag: { es: "Viaje", en: "Travel" } },
   { id: "5hPbolLH5jw", es: "Aventura", en: "Adventure", tag: { es: "Viaje", en: "Travel" } },
   { id: "hZE7XNbMdLw", es: "Volé mi dron en Teotihuacán", en: "Flying My Drone at Teotihuacan", tag: { es: "Vlog", en: "Vlog" } },
+  { id: "ffrgP2KyEmw", es: "Gracias 2021", en: "Thank You 2021", tag: { es: "Recap anual", en: "Year recap" } },
 ];
 
 /* ===== i18n ===== */
