@@ -115,3 +115,24 @@ document.querySelectorAll(".section-head, .service, .featured-copy, .featured-th
 
 document.getElementById("year").textContent = new Date().getFullYear();
 applyLang(lang);
+
+/* ===== Hero video: reveal only once YouTube is actually playing (hides title/spinner/controls) ===== */
+(() => {
+  const wrap = document.querySelector(".hero-video");
+  const frame = document.getElementById("heroIframe");
+  if (!wrap || !frame) return;
+  let shown = false;
+  const show = () => { if (!shown) { shown = true; setTimeout(() => wrap.classList.add("playing"), 900); } };
+  addEventListener("message", e => {
+    if (!/youtube(-nocookie)?\.com$/.test(new URL(e.origin).hostname)) return;
+    try {
+      const d = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
+      if (d && d.event === "infoDelivery" && d.info && d.info.playerState === 1) show();
+      if (d && d.event === "onStateChange" && d.info === 1) show();
+    } catch {}
+  });
+  frame.addEventListener("load", () => {
+    frame.contentWindow.postMessage(JSON.stringify({ event: "listening", id: "hero" }), "*");
+    setTimeout(show, 6000); // fallback if the API never answers
+  });
+})();
