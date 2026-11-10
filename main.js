@@ -147,7 +147,6 @@ applyLang(lang);
   });
   frame.addEventListener("load", () => {
     frame.contentWindow.postMessage(JSON.stringify({ event: "listening", id: "hero" }), "*");
-    send("mute"); send("playVideo");
     setTimeout(show, 6000);
   });
 })();
