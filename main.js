@@ -1,9 +1,20 @@
+/* ===== Selected works (pantalla completa) =====
+   video: ruta a un mp4 corto (8-12 s, sin audio). null = usa el poster fijo. */
+const WORKS = [
+  { id: "AhDZVlISxeo", video: "assets/video/bisbees.mp4", poster: "assets/video/bisbees-poster.jpg",
+    es: { title: "Bisbee's Black & Blue", meta: "Los Cabos · 2025 · Documental corto" }, en: { title: "Bisbee's Black & Blue", meta: "Los Cabos · 2025 · Short documentary" } },
+  { id: "IT7qEkj4PjY", video: null, poster: "https://i.ytimg.com/vi/IT7qEkj4PjY/maxresdefault.jpg",
+    es: { title: "Banff", meta: "Canadá · Cinematic travel film" }, en: { title: "Banff", meta: "Canada · Cinematic travel film" } },
+  { id: "S5hUpPsPWUg", video: null, poster: "https://i.ytimg.com/vi/S5hUpPsPWUg/maxresdefault.jpg",
+    es: { title: "Bajo el agua", meta: "Mar de Cortés · Film submarino" }, en: { title: "Underwater", meta: "Sea of Cortez · Underwater film" } },
+  { id: "w3Bb3DCHkKE", video: null, poster: "https://i.ytimg.com/vi/w3Bb3DCHkKE/hqdefault.jpg",
+    es: { title: "Desde el aire", meta: "Baja California Sur · Showreel de dron" }, en: { title: "From above", meta: "Baja California Sur · Drone showreel" } },
+];
+const MARQUEE = ["Los Cabos", "Banff", "La Paz", "Oaxaca", "Sayulita", "Ciudad de México", "Bisbee's Black & Blue", "DJI", "FPV", "360°", "Submarino", "Worldwide"];
+
 /* ===== Films ===== */
 const FILMS = [
-  { id: "w3Bb3DCHkKE", es: "My Best Drone Moments", en: "My Best Drone Moments", tag: { es: "Showreel aéreo", en: "Aerial showreel" }, wide: true },
-  { id: "H2QswemESVg", es: "Gracias 2023", en: "Thank You 2023", tag: { es: "Recap anual", en: "Year recap" } },
-  { id: "S5hUpPsPWUg", es: "Mi film bajo el agua", en: "My Underwater Film", tag: { es: "Submarino", en: "Underwater" } },
-  { id: "IT7qEkj4PjY", es: "Banff, Canadá", en: "Banff, Canada", tag: { es: "Cinematic", en: "Cinematic" } },
+  { id: "H2QswemESVg", es: "Gracias 2023", en: "Thank You 2023", tag: { es: "Recap anual", en: "Year recap" }, wide: true },
   { id: "Zyb8TYFKU4Y", es: "Un día de pesca en Cabo", en: "A Fishing Day in Cabo", tag: { es: "Pesca deportiva", en: "Sport fishing" } },
   { id: "hpSocNV74f0", es: "Gracias 2022", en: "Thank You 2022", tag: { es: "DJI Air 2S", en: "DJI Air 2S" } },
   { id: "dDno7UmIGms", es: "México", en: "Mexico", tag: { es: "Viaje", en: "Travel" } },
@@ -21,8 +32,9 @@ const I18N = {
     "featured.title": "Bisbee's 2025: the most expensive fishing tournament in the world",
     "featured.body": "Three days on the water filming the Los Cabos Black & Blue, with a $7.5M USD purse. Yachts, marlin and the adrenaline of sport fishing from the air and from the deck.",
     "featured.cta": "Play",
-    "films.eyebrow": "Portfolio", "films.title": "Films",
-    "films.lead": "Stories of travel, ocean and adventure. Shot by drone, handheld and underwater.",
+    "works.eyebrow": "Selected works", "works.title": "Stories I\u2019ve already told", "works.cta": "Watch film",
+    "films.eyebrow": "More films", "films.title": "Films",
+    "films.lead": "Year recaps, vlogs and travel pieces. Shot by drone, handheld and underwater.",
     "films.more": "See all on YouTube",
     "services.title": "Services",
     "services.lead": "Full audiovisual production in Los Cabos and wherever the story takes us. Pro cameras, drone and 360°.",
@@ -44,7 +56,7 @@ const I18N = {
 };
 const ES = {};
 document.querySelectorAll("[data-i18n]").forEach(el => { ES[el.dataset.i18n] = el.innerHTML; });
-I18N.es = ES;
+I18N.es = ES; ES["works.cta"] = "Ver film";
 
 let lang = (() => {
   try { return localStorage.getItem("lyan-lang"); } catch { return null; }
@@ -58,10 +70,35 @@ function applyLang(l) {
     if (v != null) el.innerHTML = v;
   });
   document.title = l === "es" ? "LYAN — Adventure Filmmaker · Los Cabos" : "LYAN — Adventure Filmmaker · Los Cabos, Mexico";
-  renderFilms();
+  renderFilms(); renderWorks();
   try { localStorage.setItem("lyan-lang", l); } catch {}
 }
 document.getElementById("langToggle").addEventListener("click", () => applyLang(lang === "es" ? "en" : "es"));
+
+/* ===== Selected works ===== */
+const worksList = document.getElementById("worksList");
+function renderWorks() {
+  worksList.innerHTML = WORKS.map((w, i) => `
+    <article class="work" style="z-index:${i + 1}">
+      <div class="work-media">
+        ${w.video ? `<video muted loop playsinline preload="none" poster="${w.poster}" data-src="${w.video}"></video>` : `<img src="${w.poster}" alt="" loading="lazy" />`}
+      </div>
+      <div class="work-overlay"></div>
+      <div class="work-copy container">
+        <p class="eyebrow">${String(i + 1).padStart(2, "0")} — ${w[lang].meta}</p>
+        <h3>${w[lang].title}</h3>
+        <button class="btn btn-ghost" data-video="${w.id}">${I18N[lang]["works.cta"] || "Ver film"}</button>
+      </div>
+    </article>`).join("");
+  const vids = worksList.querySelectorAll("video");
+  if (!vids.length) return;
+  const vio = new IntersectionObserver(es => es.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause();
+  }), { threshold: 0.25 });
+  vids.forEach(v => vio.observe(v));
+}
+document.getElementById("marqueeTrack").innerHTML = [...MARQUEE, ...MARQUEE].map(t => `<span>${t}</span>`).join("");
 
 /* ===== Film grid ===== */
 const grid = document.getElementById("filmGrid");
