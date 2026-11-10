@@ -15,8 +15,7 @@ const FILMS = [
 const I18N = {
   en: {
     "nav.films": "Films", "nav.services": "Services", "nav.about": "About", "nav.contact": "Contact",
-    "hero.eyebrow": "Los Cabos, Mexico → Worldwide",
-    "hero.sub": "Adventure Filmmaker · Photographer · Professional Drone Pilot",
+    "hero.sub": "Adventure Filmmaker · Los Cabos, Mexico → Worldwide",
     "hero.cta1": "Watch films", "hero.cta2": "Book now",
     "featured.eyebrow": "Featured film",
     "featured.title": "Bisbee's 2025: the most expensive fishing tournament in the world",
