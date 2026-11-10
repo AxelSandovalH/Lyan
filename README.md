@@ -2,7 +2,8 @@
 
 Sitio estático (HTML + CSS + JS, sin build) para el portafolio de Christopher Lyan, adventure filmmaker en Los Cabos.
 
-- `index.html` — página única: hero con video, film destacado, grid de films, servicios, sobre mí, contacto.
+- `index.html` — página única: hero con video propio, marquee, Selected Works (5 piezas con clip mp4 cada una), grid de films, servicios, sobre mí, contacto con video.
+- `assets/video/` — clips mp4 sin audio en 1080p y variante `-sm` en 720p (se elige según ancho de pantalla y conexión). Los tramos y la lista de piezas viven en `WORKS` dentro de `main.js`.
 - `styles.css` — estilo oscuro y cinematográfico.
 - `main.js` — grid de films (IDs de YouTube), lightbox, toggle ES/EN, animaciones de aparición.
 - `booking.js` — motor de reservas de 4 pasos (servicio, fecha y lugar, datos, resumen) con checkout por WhatsApp. **Configura `BOOKING.whatsapp`** al inicio del archivo con el número de Lyan en formato internacional sin "+" (ej. `5216241234567`). Mientras esté vacío, el botón final cae a email.
