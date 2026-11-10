@@ -79,10 +79,15 @@ function applyLang(l) {
 document.getElementById("langToggle").addEventListener("click", () => applyLang(lang === "es" ? "en" : "es"));
 
 /* Pantallas chicas o conexión lenta -> variante 720p (-sm) */
-const SMALL = matchMedia("(max-width: 760px)").matches || (navigator.connection && (navigator.connection.saveData || /2g|3g/.test(navigator.connection.effectiveType || "")));
+const SMALL = matchMedia("(max-width: 1500px)").matches || (navigator.connection && (navigator.connection.saveData || /2g|3g/.test(navigator.connection.effectiveType || "")));
 const pickSrc = v => (SMALL && v.dataset.srcSm) ? v.dataset.srcSm : v.dataset.src;
 const contactVideo = document.querySelector(".contact-video");
-if (contactVideo) { contactVideo.src = pickSrc(contactVideo); contactVideo.load(); contactVideo.play().catch(() => {}); }
+if (contactVideo) {
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) { if (!contactVideo.src) { contactVideo.src = pickSrc(contactVideo); contactVideo.load(); } contactVideo.play().catch(() => {}); }
+    else contactVideo.pause();
+  }, { threshold: 0.1 }).observe(contactVideo);
+}
 
 /* ===== Selected works ===== */
 const worksList = document.getElementById("worksList");
@@ -99,12 +104,21 @@ function renderWorks() {
         <button class="btn btn-ghost" data-video="${w.id}">${I18N[lang]["works.cta"] || "Ver film"}</button>
       </div>
     </article>`).join("");
-  const vids = worksList.querySelectorAll("video");
+  const vids = [...worksList.querySelectorAll("video")];
   if (!vids.length) return;
-  const vio = new IntersectionObserver(es => es.forEach(e => {
-    const v = e.target;
-    if (e.isIntersecting) { if (!v.src) v.src = pickSrc(v); v.play().catch(() => {}); } else v.pause();
-  }), { threshold: 0.25 });
+  const ratios = new Map();
+  const sync = () => {
+    /* Las piezas se apilan: la de índice más alto que cubra media pantalla es la que se ve */
+    let best = null, bestR = 0;
+    for (let i = vids.length - 1; i >= 0; i--) { const r = ratios.get(vids[i]) || 0; if (r >= 0.5) { best = vids[i]; bestR = r; break; } }
+    if (!best) vids.forEach(v => { const r = ratios.get(v) || 0; if (r > bestR) { bestR = r; best = v; } });
+    vids.forEach(v => {
+      if (v === best && bestR > 0.2) { if (!v.src) v.src = pickSrc(v); if (v.paused) v.play().catch(() => {}); }
+      else if (!v.paused) v.pause();
+    });
+  };
+  const vio = new IntersectionObserver(es => { es.forEach(e => ratios.set(e.target, e.isIntersecting ? e.intersectionRatio : 0)); sync(); },
+    { threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] });
   vids.forEach(v => vio.observe(v));
 }
 document.getElementById("marqueeTrack").innerHTML = [...MARQUEE, ...MARQUEE].map(t => `<span>${t}</span>`).join("");
@@ -195,4 +209,6 @@ applyLang(lang);
     frame.contentWindow.postMessage(JSON.stringify({ event: "listening", id: "hero" }), "*");
     setTimeout(show, 6000);
   });
+  const hero = document.querySelector(".hero");
+  if (hero) new IntersectionObserver(([e]) => send(e.isIntersecting ? "playVideo" : "pauseVideo"), { threshold: 0.05 }).observe(hero);
 })();
