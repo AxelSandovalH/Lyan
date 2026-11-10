@@ -84,9 +84,9 @@ const pickSrc = v => (SMALL && v.dataset.srcSm) ? v.dataset.srcSm : v.dataset.sr
 const contactVideo = document.querySelector(".contact-video");
 if (contactVideo) {
   new IntersectionObserver(([e]) => {
-    if (e.isIntersecting) { if (!contactVideo.src) { contactVideo.src = pickSrc(contactVideo); contactVideo.load(); } contactVideo.play().catch(() => {}); }
+    if (e.isIntersecting) { if (contactVideo.dataset.poster) { contactVideo.poster = contactVideo.dataset.poster; delete contactVideo.dataset.poster; } if (!contactVideo.src) { contactVideo.src = pickSrc(contactVideo); contactVideo.load(); } contactVideo.play().catch(() => {}); }
     else contactVideo.pause();
-  }, { threshold: 0.1 }).observe(contactVideo);
+  }, { threshold: 0, rootMargin: "60% 0px" }).observe(contactVideo);
 }
 
 /* ===== Selected works ===== */
@@ -95,7 +95,7 @@ function renderWorks() {
   worksList.innerHTML = WORKS.map((w, i) => `
     <article class="work" style="z-index:${i + 1}">
       <div class="work-media">
-        ${w.video ? `<video muted loop playsinline preload="none" poster="${w.poster}" data-src="${w.video}" data-src-sm="${w.video.replace(/\.mp4$/, "-sm.mp4")}"></video>` : `<img src="${w.poster}" alt="" loading="lazy" />`}
+        ${w.video ? `<video muted loop playsinline preload="none" data-poster="${w.poster}" data-src="${w.video}" data-src-sm="${w.video.replace(/\.mp4$/, "-sm.mp4")}"></video>` : `<img src="${w.poster}" alt="" loading="lazy" />`}
       </div>
       <div class="work-overlay"></div>
       <div class="work-copy container">
@@ -120,6 +120,9 @@ function renderWorks() {
   const vio = new IntersectionObserver(es => { es.forEach(e => ratios.set(e.target, e.isIntersecting ? e.intersectionRatio : 0)); sync(); },
     { threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] });
   vids.forEach(v => vio.observe(v));
+  /* poster y precarga cuando la pieza está a una pantalla de distancia */
+  const near = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; const v = e.target; if (v.dataset.poster) { v.poster = v.dataset.poster; delete v.dataset.poster; } if (!v.src) { v.src = pickSrc(v); v.preload = "auto"; } near.unobserve(v); }), { rootMargin: "100% 0px" });
+  vids.forEach(v => near.observe(v));
 }
 document.getElementById("marqueeTrack").innerHTML = [...MARQUEE, ...MARQUEE].map(t => `<span>${t}</span>`).join("");
 
