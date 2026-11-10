@@ -3,7 +3,7 @@
    Configura el número abajo. Formato internacional sin "+", ej. 5216241234567
    ===================================================================== */
 const BOOKING = {
-  whatsapp: "",                       // ← número de Lyan. Vacío = cae a email.
+  whatsapp: "5216242370966",          // QuickTurno por ahora. Vacío = cae a email.
   email: "lyanpro1500@gmail.com",
   minLeadDays: 2,                     // no se puede reservar con menos de 2 días
   services: [
