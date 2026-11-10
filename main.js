@@ -39,6 +39,7 @@ const I18N = {
     "contact.eyebrow": "Bookings & collaborations",
     "contact.title": "Let's make the next story.",
     "contact.lead": "Tell me what you want to film, where and when. I reply within 24 hours.",
+    "contact.book": "Book a date", "svc.book": "Book",
   },
 };
 const ES = {};

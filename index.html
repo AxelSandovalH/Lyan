@@ -43,7 +43,7 @@
     <p class="hero-sub" data-i18n="hero.sub">Adventure Filmmaker · Los Cabos, México → Worldwide</p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#films" data-i18n="hero.cta1">Ver films</a>
-      <a class="btn btn-ghost" href="#contact" data-i18n="hero.cta2">Reservar</a>
+      <a class="btn btn-ghost" href="#contact" data-book data-i18n="hero.cta2">Reservar</a>
     </div>
   </div>
   <a href="#films" class="scroll-hint" aria-hidden="true"><span></span></a>
@@ -89,12 +89,12 @@
       <p class="section-lead" data-i18n="services.lead">Producción audiovisual completa en Los Cabos y donde haga falta. Cámaras profesionales, dron y 360°.</p>
     </div>
     <div class="service-grid">
-      <article class="service"><span class="num">01</span><h3 data-i18n="s1.t">Bodas</h3><p data-i18n="s1.b">Film cinematográfico y fotografía del día completo, con tomas aéreas de la ceremonia y la locación.</p></article>
-      <article class="service"><span class="num">02</span><h3 data-i18n="s2.t">Marcas</h3><p data-i18n="s2.b">Contenido para redes, campañas y lanzamientos. Reels, spots y fotografía de producto en locación.</p></article>
-      <article class="service"><span class="num">03</span><h3 data-i18n="s3.t">Bienes raíces</h3><p data-i18n="s3.b">Recorridos en video, fotografía de interiores y vistas aéreas que venden la propiedad y su entorno.</p></article>
-      <article class="service"><span class="num">04</span><h3 data-i18n="s4.t">Eventos y deportes</h3><p data-i18n="s4.b">Torneos de pesca, competencias y eventos corporativos. Cobertura en tiempo real y resumen editado.</p></article>
-      <article class="service"><span class="num">05</span><h3 data-i18n="s5.t">Aéreo / Dron</h3><p data-i18n="s5.b">Piloto profesional certificado. Tomas cinematográficas, FPV y seguimiento en mar abierto.</p></article>
-      <article class="service"><span class="num">06</span><h3 data-i18n="s6.t">360° y submarino</h3><p data-i18n="s6.b">Experiencias inmersivas y video bajo el agua para destinos, hoteles y turismo de aventura.</p></article>
+      <article class="service"><span class="num">01</span><h3 data-i18n="s1.t">Bodas</h3><p data-i18n="s1.b">Film cinematográfico y fotografía del día completo, con tomas aéreas de la ceremonia y la locación.</p><a href="#" class="svc-book" data-book="wedding" data-i18n="svc.book">Reservar</a></article>
+      <article class="service"><span class="num">02</span><h3 data-i18n="s2.t">Marcas</h3><p data-i18n="s2.b">Contenido para redes, campañas y lanzamientos. Reels, spots y fotografía de producto en locación.</p><a href="#" class="svc-book" data-book="brand" data-i18n="svc.book">Reservar</a></article>
+      <article class="service"><span class="num">03</span><h3 data-i18n="s3.t">Bienes raíces</h3><p data-i18n="s3.b">Recorridos en video, fotografía de interiores y vistas aéreas que venden la propiedad y su entorno.</p><a href="#" class="svc-book" data-book="realestate" data-i18n="svc.book">Reservar</a></article>
+      <article class="service"><span class="num">04</span><h3 data-i18n="s4.t">Eventos y deportes</h3><p data-i18n="s4.b">Torneos de pesca, competencias y eventos corporativos. Cobertura en tiempo real y resumen editado.</p><a href="#" class="svc-book" data-book="event" data-i18n="svc.book">Reservar</a></article>
+      <article class="service"><span class="num">05</span><h3 data-i18n="s5.t">Aéreo / Dron</h3><p data-i18n="s5.b">Piloto profesional certificado. Tomas cinematográficas, FPV y seguimiento en mar abierto.</p><a href="#" class="svc-book" data-book="aerial" data-i18n="svc.book">Reservar</a></article>
+      <article class="service"><span class="num">06</span><h3 data-i18n="s6.t">360° y submarino</h3><p data-i18n="s6.b">Experiencias inmersivas y video bajo el agua para destinos, hoteles y turismo de aventura.</p><a href="#" class="svc-book" data-book="underwater" data-i18n="svc.book">Reservar</a></article>
     </div>
   </div>
 </section>
@@ -126,7 +126,7 @@
     <p class="eyebrow" data-i18n="contact.eyebrow">Bookings &amp; colaboraciones</p>
     <h2 data-i18n="contact.title">Hagamos la siguiente historia.</h2>
     <p class="section-lead" data-i18n="contact.lead">Cuéntame qué quieres filmar, dónde y cuándo. Respondo en menos de 24 horas.</p>
-    <a class="btn btn-primary btn-lg" href="mailto:lyanpro1500@gmail.com">lyanpro1500@gmail.com</a>
+    <div class="contact-cta"><a class="btn btn-primary btn-lg" href="#" data-book data-i18n="contact.book">Reservar una fecha</a><a class="contact-mail" href="mailto:lyanpro1500@gmail.com">lyanpro1500@gmail.com</a></div>
     <div class="socials">
       <a href="https://www.instagram.com/christopherlyan/" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.instagram.com/lyan.visuals/" target="_blank" rel="noopener">Lyan Visuals</a>
@@ -149,5 +149,6 @@
 </div>
 
 <script src="main.js"></script>
+<script src="booking.js"></script>
 </body>
 </html>
